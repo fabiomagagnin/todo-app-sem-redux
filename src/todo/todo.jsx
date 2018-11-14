@@ -1,13 +1,23 @@
-import React, {Component} from 'react'
-import axios from 'axios'
+import React from 'react'
+//import axios from 'axios'
 
 import PageHeader from '../template/pageHeader'
 import TodoForm from './todoForm'
 import TodoList from './todoList'
 
-const URL = 'http://localhost:3003/api/todos'
+//const URL = 'http://localhost:3003/api/todos'
 
-export default class Todo extends Component {
+export default props => (
+    <div>
+        <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
+        <TodoForm />
+        <TodoList />
+    </div>
+)  
+
+/*
+
+    Todos os metodos foram removidos depois da adição do redux
 
     constructor(props) {
         super(props)
@@ -73,22 +83,5 @@ export default class Todo extends Component {
         axios.put(`${URL}/${todo._id}`, {...todo, done: false})
             .then(resp => this.refresh(this.state.description))
     }    
+*/
 
-    render() {
-        return (
-            <div>
-                <PageHeader name="Tarefas" small="Cadastro"></PageHeader>
-                <TodoForm handleAdd={this.handleAdd} 
-                        handleChange={this.handleChange} 
-                        handleSearch={this.handleSearch} 
-                        description={this.state.description}
-                        handleClear={this.handleClear}/>
-                <TodoList list={this.state.list} 
-                    handleRemove={this.handleRemove}
-                    handleMarkAsDone={this.handleMarkAsDone}
-                    handleMarkAsPending={this.handleMarkAsPending}
-                    />
-            </div>
-        )
-    }
-}
